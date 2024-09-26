@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/login.css">
+
+</head>
+<body>
+    
+    <form action="./php/farmer_login.php" method="post">
+        <h1>Login</h1>
+        <div class="login-sec">
+            <label for="">User Name  </label>
+            <input class="login-input" type="email" name="email" id="email" placeholder="User Name">
+        </div>
+
+        <div class="login-sec">
+            <label for="">Password </label>
+            <input class="login-input" type="password" name="user_pass" id="user_pass" placeholder="*******">
+        </div>
+        <button type="submit" class="log-in-btn" name="btn-loggin" id="btn-loggin">Log In</button>
+        <div >
+            <p>Don't have an Account ? <a href="sign-up.html">Register</a></p>
+        </div>
+    </form>
+     
+</body>
+</html>

@@ -1,0 +1,46 @@
+
+* {
+    overflow-y: hidden;
+}
+
+.harvest {
+    padding: 20px;
+}
+
+.harvest-management {
+    margin-left: 50px;
+    margin-top: 60px;
+}
+
+table {
+    margin: 50px 40px;
+    background: url('/assets/alternating-arrowhead.svg');
+}
+
+table th {
+    background-color: rgb(143, 226, 143);
+    height: 30px;
+    padding: 15px;
+}
+
+table td {
+    width: 250px;
+    text-align: center;
+    
+}
+.green-btn {
+    cursor: pointer;
+    width: 100px;
+    padding: 10px;
+    background-color: rgb(120, 195, 116);
+    border: none;
+}
+
+.red-btn {
+    cursor: pointer;
+    width: 100px;
+    padding: 10px;
+    background-color: rgb(195, 116, 116);
+    border: none;
+
+}

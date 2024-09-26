@@ -1,0 +1,48 @@
+
+
+
+
+
+
+
+
+
+
+.edit-profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    margin: 30px 35%;
+    gap: 50px;
+    background: linear-gradient(112.1deg, rgb(32, 38, 57) 11.4%, rgb(63, 76, 119) 70.2%);
+    color: aliceblue;
+
+}
+
+.edit-section {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+    padding: 10px;
+}
+
+.edit-profile-in {
+    width: 200px;
+    height: 30px;
+    margin-left: 20px;
+    border-radius: 10px;
+    border-color: rgb(87, 189, 98);
+    padding: 1px;
+}
+
+.green-btn {
+    cursor: pointer;
+    width: 100px;
+    padding: 10px;
+    background-color: rgb(120, 195, 116);
+    border: none;
+}
+

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/signUp.css">
+    <title>Create an Accoutn</title>
+</head>
+<body>
+    <form action="./php/admin_reg.php" method="post">
+        <h1>Admin Sign Up</h1>
+        <div class="login-sec">
+            <label for="">User Name  </label>
+            <input class="login-input" type="text" name="name" id="name" placeholder="User Name">
+        </div>
+
+        <div class="login-sec">
+            <label for="">Email  </label>
+            <input class="login-input" type="email" name="email" id="email" placeholder="username@gmail.com">
+        </div>
+
+        <div class="login-sec">
+            <label for="">Phone  </label>
+            <input class="login-input" type="tel" name="phone" id="phone" placeholder="07XXXXXXXX">
+        </div>
+
+        <div class="login-sec">
+            <label for="">Password </label>
+            <input class="login-input" type="password" name="password" id="password" placeholder="*******">
+        </div>
+        <button type="submit" class="log-in-btn">Create An Account</button>
+        <div >
+            <p>Already a Member ? <a href="AdminLogin.html">Log In</a></p>
+        </div>
+    </form>
+     
+</body>
+</html>
