@@ -21,7 +21,7 @@
     }
 
   
-    $sql = "SELECT * FROM temp_quotations";
+    $sql = "SELECT * FROM quotations";
 	$result = $conn->query($sql);
 ?>
 
@@ -76,7 +76,7 @@
                 <ul>
                 <li><a href="">HOME</a></li>
                 <li><a href="">Payments</a></li>
-                <li><a href="">Quotations</a></li>
+                <li><a href="">Pending Quotations</a></li>
             </ul>
             </div>
     </div>
@@ -87,7 +87,7 @@
 
 
 <div id= "Quotations">
-	<h1 id= "section">Quotation</h1>
+	<h1 id= "section">Accepted Quotations</h1>
 
 	<table class="q-table">
 		<tr>
@@ -107,8 +107,8 @@
             <td><?php echo $row['rice_type'] ?></td>
             <td><?php echo $row['amount'] ?></td>
             <td>
-            <a href="./php/quo-accept.php?acceptid=<?php echo $row['temp_id'] ?>"><button class="green-btn">Accept</button>
-            <a href="./php/temp-quo-delete.php?deleteid=<?php echo $row['temp_id'] ?>"><button class=red-btn>Delete</button></a>  
+            <a href="./quo_update.php?updateid=<?php echo $row['quo_id'] ?>"><button class="green-btn">Update</button>
+            <a href="./php/quo_delete.php?deleteid=<?php echo $row['quo_id'] ?>"><button class=red-btn>Delete</button></a>  
             </td>
         </tr>	
 		<?php } ?>  

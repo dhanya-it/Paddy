@@ -72,7 +72,8 @@ $servername = "localhost";
 		<ul>
 			<li><a href="Rice Lander.php">HOME</a></li>
 			<li><a href="payment.html">Payments</a></li>
-			<li><a href="quotation.php">Quotations</a></li>
+			<li><a href="quotation.php">Pending Quotations</a></li>
+            <li><a href="acceptedQuotations.php">Accepted Quotations</a></li>
 		</ul>
 		<div class="profile">
 				<?php

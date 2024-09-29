@@ -37,8 +37,8 @@ $servername = "localhost";
         <div class="navbar">
             <h1 class="logo">Rice Lander </h1>
             <ul class="navList">
-                <li><a href="farmer-dashboard.php" class="navList-item">Profile</a></li>
-                <li><a href="farmer-add-harvest.html" class="navList-item">Manage Harvest</a></li>
+            <li><a href="farmer-dashboard.php" class="navList-item">Profile</a></li>
+            <li><a href="farmer-add-harvest.php" class="navList-item">Manage Harvest</a></li>
             </ul>
             <div>
                 <HR></HR>

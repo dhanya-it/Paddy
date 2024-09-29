@@ -4,41 +4,70 @@
 
 
 <?php
-
 session_start();
 $id = $_GET['acceptid'];
 
 $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $db_name = "rice_landers";
+$username = "root";
+$password = "";
+$db_name = "rice_landers";
 
-     // Create connection
-    $conn = new mysqli($servername, $username, $password, $db_name);
+// Create connection
+$conn = new mysqli($servername, $username, $password, $db_name);
 
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
-    //Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+// Fetch data to pre-fill the form
+$result2 = mysqli_query($conn, "SELECT * FROM temp_quotations WHERE temp_id='" . $id . "'");
+$row = mysqli_fetch_array($result2);
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $amount = $_POST['amount'];
-        $sql = "UPDATE temp_quotations SET amount=? WHERE temp_id=?";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("si", $amount, $id);
-        $stmt->execute();
+// Get data from the form if it was submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $paddyType = $_POST["paddyType"] ?? NULL; // Paddy type from form
+    $acceptedAmount = $_POST["amount"] ?? NULL; // Amount accepted from form
+    $farmerId = $_POST["farmerId"] ?? NULL; // Farmer ID from form
+    $farmerName = $_POST["farmerName"] ?? NULL; // Farmer Name from form
 
-    
+    // Start a transaction
+    $conn->begin_transaction();
+
+    try {
+        // First query: Insert into quotations table
+        $sql1 = "INSERT INTO quotations (rice_type, amount, farmer_id, FarmerName) VALUES (?, ?, ?, ?)";
+        $stmt1 = $conn->prepare($sql1);
+        if (!$stmt1) {
+            throw new Exception($conn->error);
+        }
+        $stmt1->bind_param("siis", $paddyType, $acceptedAmount, $farmerId, $farmerName);
+        $stmt1->execute();
+        $stmt1->close();
+
+        // Second query: Update temp_quotations table
+        $sql2 = "UPDATE temp_quotations SET amount = amount - ? WHERE temp_id = ?";
+        $stmt2 = $conn->prepare($sql2);
+        if (!$stmt2) {
+            throw new Exception($conn->error);
+        }
+        $stmt2->bind_param("ii", $acceptedAmount, $id); // Use acceptedAmount for the update
+        $stmt2->execute();
+        $stmt2->close();
+
+        // Commit the transaction if both queries are successful
+        $conn->commit();
         header("Location: ../quotation.php");
         exit();
+    } catch (Exception $e) {
+        // Roll back the transaction if any query fails
+        $conn->rollback();
+        die("Transaction failed: " . $e->getMessage());
     }
-    
-  
-    $result2 = mysqli_query($conn, "SELECT * FROM temp_quotations WHERE temp_id='".$id."'");
-    $row = mysqli_fetch_array($result2);
-
+}
 ?>
+
+
 
 
 <!DOCTYPE html>
@@ -85,7 +114,7 @@ $servername = "localhost";
         .pop-up {
             background-color: rgb(81, 155, 100);
             width: 600px;
-            height : 300px;
+            height : 500px;
             display: flex;
             flex-direction: column;
             gap: 30px;
@@ -138,6 +167,21 @@ $servername = "localhost";
             <div class="pop-up-body-sec">
                 <p>Disclined : </p>
                 <input class="pop-up-input" type="text" value = "0">
+            </div>
+
+            <div class="pop-up-body-sec">
+                <p>Farmer ID : </p>
+                <input readonly class="pop-up-input" type="text" name="farmerId" id="farmerId" value= "<?php echo $row['farmer_id'] ?>">
+            </div>
+
+            <div class="pop-up-body-sec">
+                <p>Farmer Name : </p>
+                <input readonly class="pop-up-input" type="text" name="farmerName" id="farmerName" value= "<?php echo $row['FarmerName'] ?>">
+            </div>
+
+            <div class="pop-up-body-sec">
+                <p>Paddy Type : </p>
+                <input readonly class="pop-up-input" type="text" name="paddyType" id="paddyType" value= "<?php echo $row['rice_type'] ?>">
             </div>
         </div>
         <div class="pop-up-footer">
