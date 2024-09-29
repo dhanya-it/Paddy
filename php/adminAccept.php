@@ -44,7 +44,7 @@ mysqli_stmt_execute($stmt);
 
 
 if (isset($farmerId) == true ) {
-    header("location: ../farmer-add-harvest.php");
+    header("location: ../acceptedQuotations.php");
 }
 
 ?>

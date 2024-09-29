@@ -166,7 +166,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <div class="pop-up-body-sec">
                 <p>Disclined : </p>
-                <input class="pop-up-input" type="text" value = "0">
+                <input readonly class="pop-up-input" type="text" id="declinedAmount" value = "0">
             </div>
 
             <div class="pop-up-body-sec">
@@ -189,5 +189,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
     </form>
+    <script>
+        document.getElementById('amount').addEventListener('input', function () {
+            var totalAmount = <?php echo $row['amount']; ?>;
+            var acceptedAmount = parseFloat(this.value) || 0;
+            var declinedAmount = totalAmount - acceptedAmount;
+            document.getElementById('declinedAmount').value = declinedAmount.toFixed(2);
+        });
+    </script>
 </body>
 </html>
