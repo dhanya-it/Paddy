@@ -1,0 +1,175 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Sep 29, 2024 at 08:05 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.0.28
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `rice_landers`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `admin_id` int(11) NOT NULL,
+  `admin_name` varchar(225) DEFAULT NULL,
+  `admin_email` varchar(225) DEFAULT NULL,
+  `admin_phone` varchar(30) DEFAULT NULL,
+  `admin_password` varchar(30) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`admin_id`, `admin_name`, `admin_email`, `admin_phone`, `admin_password`) VALUES
+(1, 'admin', 'admin@gmail.com', '0715845385', 'admin');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `farmer`
+--
+
+CREATE TABLE `farmer` (
+  `id` int(11) NOT NULL,
+  `name` char(100) DEFAULT NULL,
+  `phone` char(15) DEFAULT NULL,
+  `address` char(100) DEFAULT NULL,
+  `password` char(10) DEFAULT NULL,
+  `age` int(11) DEFAULT NULL,
+  `email` char(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `farmer`
+--
+
+INSERT INTO `farmer` (`id`, `name`, `phone`, `address`, `password`, `age`, `email`) VALUES
+(12, 'admin', '0715845385', '262/3/A , Thunnana , Padukka', '1234', 22, 'admin@gmail.com');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `quotations`
+--
+
+CREATE TABLE `quotations` (
+  `quo_id` int(11) NOT NULL,
+  `rice_type` varchar(255) DEFAULT NULL,
+  `amount` float DEFAULT NULL,
+  `farmer_id` int(11) DEFAULT NULL,
+  `FarmerName` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `quotations`
+--
+
+INSERT INTO `quotations` (`quo_id`, `rice_type`, `amount`, `farmer_id`, `FarmerName`) VALUES
+(4, 'white_raw', 300, 102, 'Nimal Silva'),
+(5, 'Nadu', 30, 102, 'Nimal Silva'),
+(7, 'Kekulu', 100, 103, 'Kumara Fernando'),
+(8, 'Kekulu', 400, 103, 'Kumara Fernando'),
+(9, 'Kekulu', 0, 103, 'Kumara Fernando');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `temp_quotations`
+--
+
+CREATE TABLE `temp_quotations` (
+  `temp_id` int(11) NOT NULL,
+  `farmer_id` int(11) DEFAULT NULL,
+  `FarmerName` varchar(255) DEFAULT NULL,
+  `rice_type` varchar(255) DEFAULT NULL,
+  `amount` float DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `temp_quotations`
+--
+
+INSERT INTO `temp_quotations` (`temp_id`, `farmer_id`, `FarmerName`, `rice_type`, `amount`) VALUES
+(10, 12, 'admin', 'pachchaperumal', 500),
+(13, 12, 'admin', 'pachchaperumal', 1000),
+(14, 12, 'admin', 'white_raw_samba', 10000);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`admin_id`);
+
+--
+-- Indexes for table `farmer`
+--
+ALTER TABLE `farmer`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `quotations`
+--
+ALTER TABLE `quotations`
+  ADD PRIMARY KEY (`quo_id`);
+
+--
+-- Indexes for table `temp_quotations`
+--
+ALTER TABLE `temp_quotations`
+  ADD PRIMARY KEY (`temp_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `farmer`
+--
+ALTER TABLE `farmer`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `quotations`
+--
+ALTER TABLE `quotations`
+  MODIFY `quo_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `temp_quotations`
+--
+ALTER TABLE `temp_quotations`
+  MODIFY `temp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
