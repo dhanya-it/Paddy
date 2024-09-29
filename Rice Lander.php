@@ -81,6 +81,7 @@ $servername = "localhost";
                         $row = mysqli_fetch_array($result2); ?>
 			<h3>Hi <?php echo $row["admin_name"]; ?>, </h3>
 			<img src="./images/PngItem_786293.png" class="user" alt="" srcset="">
+			<a href="php/logout.php" class="nav-item">Log Out</a>
 		</div>
 </nav>
 		<div id="mobile_menu">

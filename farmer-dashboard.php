@@ -43,7 +43,7 @@ $servername = "localhost";
             <div>
                 <HR></HR>
                 <div class="logout-sec">
-                    <a href="#">Log Out</a>
+                <a href="./php/logout.php" class="nav-item">Log Out</a>
                 </div>
             </div>
         </div>

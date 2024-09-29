@@ -6,6 +6,8 @@
 <?php
     session_start();
 
+    $id = $_SESSION["id"];
+    
     $servername = "localhost";
     $username = "root";
     $password = "";
@@ -62,16 +64,23 @@
     <div id="header">
 
     
-        <nav id= "navbar">
-        <h1>RICE LANDER</h1>
+    <nav id= "navbar">
+	<h1>RICE LANDER</h1>
 		<ul>
 			<li><a href="Rice Lander.php">HOME</a></li>
 			<li><a href="payment.html">Payments</a></li>
 			<li><a href="quotation.php">Pending Quotations</a></li>
             <li><a href="acceptedQuotations.php">Accepted Quotations</a></li>
 		</ul>
-            <div id="">
-    </nav>
+		<div class="profile">
+				<?php
+                        $result2 = mysqli_query($conn, "SELECT * FROM admin WHERE admin_id='".$id."'");
+                        $row = mysqli_fetch_array($result2); ?>
+			<h3>Hi <?php echo $row["admin_name"]; ?>, </h3>
+			<img src="./images/PngItem_786293.png" class="user" alt="" srcset="">
+			<a href="php/logout.php" class="nav-item">Log Out</a>
+		</div>
+</nav>
             <div id="mobile_menu">
                 <ul>
                 <li><a href="">HOME</a></li>
